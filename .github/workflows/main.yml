@@ -25,6 +25,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Github Action for LaTeX
         uses: xu-cheng/latex-action@v2
-        with: |
+        with: 
+          root_file: |
             ppt.tex
 
