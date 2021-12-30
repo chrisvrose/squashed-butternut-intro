@@ -29,9 +29,12 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with: 
           root_file: |
-            ppt.tex
+            ppt0.tex
+            ppt1.tex
       - uses: actions/upload-artifact@v2
         with:
-          name: PDF
-          path: ppt.pdf
+          name: PDF0
+          path: |
+            ppt0.pdf
+            ppt1.pdf
 
