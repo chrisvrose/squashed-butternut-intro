@@ -70,14 +70,10 @@
 \begin{frame}
     \frametitle{Methodology}
     \begin{itemize}
-        \item The YC$_b$C$_r$ color space is a popular color space used in TVs, as it splits out a luminance component (the black and white) and 2 color components.
-        \begin{itemize}
-            \item Traditionally, the color TVs would use this as a way of displaying color, and the B\&W TVs would simply display only the luminance component, saving on hardware and bandwidth costs.
-        \end{itemize} 
-        \item The $Y$ component can be scaled here accordingly to change the brightness of that region of the image.
-        \item There are two ways to bring about this change:
+        
+        \item There are two ways to bring about tonemapping:
         \begin{enumerate}
-            \item Global operators: they are non-linear functions based on the luminance and other global variables of the image.
+            \item Global operators: Non-linear functions based on the luminance and other global variables of the image.
             \item Local operators: the parameters of the non-linear function change in each pixel, according to features extracted from the surrounding parameters. Those algorithms are more complicated; they can show artifacts, but they can (if used correctly) provide the best performance, since human vision is mainly sensitive to local contrast.
         \end{enumerate}
     \end{itemize}
@@ -85,6 +81,19 @@
 
 \end{frame}
 
+\begin{frame}
+    \frametitle{Methodology - Luminance Model}
+    A good way to begin with
+    \begin{itemize}
+        \item The YC$_b$C$_r$ color space is a popular color space used in TVs, as it splits out a luminance component (the black and white) and 2 color components.
+        \begin{itemize}
+            \item Traditionally, the color TVs would use this as a way of displaying color, and the B\&W TVs would simply display only the luminance component, saving on hardware and bandwidth costs.
+        \end{itemize} 
+        \item The $Y$ component can be scaled here accordingly to change the brightness of that region of the image.
+    \end{itemize}
+    
+
+\end{frame}
 
 \begin{frame}
     \frametitle{Methodology (Continued)}
@@ -98,6 +107,19 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Methodology}
+    Here is the general description of the procedure:
+    \begin{enumerate}
+        \item Convert the image the the YC$_b$C$_r$ space.
+        \item Construct a histogram of brightness values.
+        \item Taking the log of the luminance, scale it according to the histogram.
+        \item Process and convert back to RGB model as required.
+    \end{enumerate}
+    
+
+\end{frame}
+
+\begin{frame}
     \frametitle{Why Parallelize?}
     \begin{itemize}
         \item Tone-mapping is done for images, where there are millions of pixels present.
@@ -105,7 +127,15 @@
         \item This is the perfect opportunity for GPU Acceleration.
     \end{itemize}
     
+\end{frame}
 
+\begin{frame}
+    \frametitle{Results}
+    \begin{itemize}
+        \item Prefix sum calculation is a bottleneck - This can be done efficiently with the Hillis Steele prefix calculation algorithm.
+        \item Serial and parallel implementation can be proven to be similar - Use differences to measure.
+        \item 8-10x improvements in performance over naive implementations
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
