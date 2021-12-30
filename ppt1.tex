@@ -115,7 +115,15 @@
         \item Taking the log of the luminance, scale it according to the histogram.
         \item Process and convert back to RGB model as required.
     \end{enumerate}
-    
+    \begin{equation*}
+        Y' = 016 + (+65.481R'+128.553G'+24.966B')
+    \end{equation*}
+    \begin{equation*}
+        C_b = 128 + (-37.797R'-074.203G'+112.00B')
+    \end{equation*}
+    \begin{equation*}
+        C_r = 128 + (+112.00R'-093.786G'-18.214B')
+    \end{equation*}
 
 \end{frame}
 
